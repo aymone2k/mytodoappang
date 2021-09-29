@@ -1,0 +1,91 @@
+
+<app-header-page page="Création compte"></app-header-page>
+
+<div class="container-sm col-6">
+
+<mat-spinner style="margin-bottom: 300px;" class="container text-center" *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+<form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+
+<div class="mb-3 ">
+  <label class="h6">Photo de profil: </label>
+
+ <input type="file" class="form-control inputFile" #imageUpload (change)="uploadImage($event)" accept=".jpeg , .jpg, .png"  >
+
+ <div class="file-upload">
+<div class='image-preview' *ngIf="imagePreview">
+<img [src]="imagePreview">
+</div>
+   <button class="btn btn-outline-info btn-sm"  type="button"
+     (click)="imageUpload.click()">
+     <p class="h6">Télécharger une image de profil</p>
+   </button>
+</div>
+
+</div>
+
+  <div class="mb-3 ">
+    <label class="h6">Nom :<span *ngIf="controlForm.name.errors">
+      * (6 lettres minimum)
+    </span></label>
+    <input type="text" class="form-control" formControlName="name" />
+    <div *ngIf="controlForm.name.touched && controlForm.name.errors" class="alert alert-danger">
+      <div *ngIf="controlForm.name.errors.required">Ce champ est requis</div>
+      <div *ngIf="controlForm.name.errors.minlength">6 lettres minimun</div>
+    </div>
+  </div>
+  <div class="mb-3" >
+    <label class="h6">Adresse Email :<span *ngIf="controlForm.email.errors">
+      *
+    </span></label>
+    <input type="email" class="form-control" formControlName="email" >
+    <div *ngIf="controlForm.email.touched && controlForm.email.errors" class="alert alert-danger">
+      <div *ngIf="controlForm.email.errors.required">Ce champ est requis</div>
+      <div *ngIf="controlForm.email.errors">cet email est invalide</div>
+    </div>
+
+  </div>
+  <div class="row ">
+    <div class="col-md-6 ">
+      <label class="h6">Password : <span *ngIf="controlForm.password.errors">
+      *  </span></label>
+      <div class="input-group mb-3 ">
+        <input [type]="fieldTextType1 ?'text':'password'" class="form-control" formControlName="password">
+        <div class="input-group-prepend">
+          <button type="button"    (click)="toogleFieldText1()" class="input-group-text theme-btn--dark1 btn--md show-password">show</button>
+           </div>
+        <div *ngIf="controlForm.password.touched && controlForm.password.errors" class="alert alert-danger">
+          <div *ngIf="controlForm.password.errors.required">Ce champ est requis</div>
+          <div *ngIf="controlForm.password.errors.pattern">6 lettres minimun</div>
+        </div>
+      </div>
+</div>
+<div class="col-md-6 ">
+  <label class="h6">Confirmation Password : <span *ngIf="controlForm.confirmPassword.errors">
+   *  </span></label>
+   <div class="input-group mb-3 ">
+    <input [type]="fieldTextType2 ?'text':'password'" class="form-control" formControlName="confirmPassword">
+    <div class="input-group-prepend">
+      <button type="button"    (click)="toogleFieldText2()" class="input-group-text theme-btn--dark1 btn--md show-password">show</button>
+       </div>
+     <div *ngIf="controlForm.confirmPassword.touched && controlForm.confirmPassword.errors" class="alert alert-danger">
+       <span *ngIf="controlForm.confirmPassword.errors.required">Ce champ est requis</span>
+       <span *ngIf="controlForm.confirmPassword.errors.mustMatch">Attention, la confirmation Password ne correspond pas au password</span>
+     </div>
+
+   </div>
+</div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Créer mon compte</button>
+  <button class="btn btn-secondary" type="reset" (click)="onResetForm()">Cancel</button>
+</form>
+</div>
+
+<div class="col-12">
+  <div class="border-top mt-4">
+      <a routerLink="/signin" class="no-account h6">J'ai déjà un compte, je me connecte ici</a>
+  </div>
+</div>
+</div>

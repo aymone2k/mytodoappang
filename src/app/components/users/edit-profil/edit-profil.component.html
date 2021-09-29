@@ -1,0 +1,64 @@
+<div class="container mt-3 mb-5">
+  <div class="container mt-3 ">
+  <div class="col-12 mb-3">
+    <div class="section-title text-center mb-15">
+        <h4 class="title text-white text-capitalize text-info bg-info">Modification de mon compte</h4>
+    </div>
+</div>
+</div>
+
+<form [formGroup]="editProfilForm" (ngSubmit)="onEditProfil()">
+  <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+  <div class="alert alert-success" *ngIf="message"> {{message}}, Veuillez vous connecter avec vos identifiants</div>
+<div class="mb-3 ">
+  <label >Photo de profil: </label>
+
+ <input type="file" class="form-control inputFile" #imageUpload (change)="uploadImage($event)" accept=".jpeg , .jpg, .png"  >
+
+ <div class="file-upload">
+<div class='image-preview' *ngIf="imagePreview">
+<img [src]="imagePreview">
+</div>
+   <button class="btn btn-outline-info btn-sm"  type="button"
+     (click)="imageUpload.click()">
+     <p>Télécharger une image de profil</p>
+   </button>
+</div>
+
+</div>
+
+  <div class="mb-3 ">
+    <label >Nom :<span *ngIf="controlForm.name.errors">
+      * (6 lettres minimum)
+    </span></label>
+    <input type="text" class="form-control" formControlName="name" />
+    <div *ngIf="controlForm.name.touched && controlForm.name.errors" class="alert alert-danger">
+      <div *ngIf="controlForm.name.errors.required">Ce champ est requis</div>
+      <div *ngIf="controlForm.name.errors.minlength">6 lettres minimun</div>
+    </div>
+  </div>
+  <div class="mb-3" >
+    <label >Adresse Email :<span *ngIf="controlForm.email.errors">
+      *
+    </span>: </label>
+    <input type="email" class="form-control" formControlName="email" >
+    <div *ngIf="controlForm.email.touched && controlForm.email.errors" class="alert alert-danger">
+      <div *ngIf="controlForm.email.errors.required">Ce champ est requis</div>
+      <div *ngIf="controlForm.email.errors">cet email est invalide</div>
+    </div>
+
+  </div>
+
+
+  <button type="submit" class="btn btn-primary" [disabled]="editProfilForm.invalid">Confirmer la modification mon profil</button>
+</form>
+
+<div class="col">
+  <div class="border-top mt-5">
+      <a  routerLink="/reset-password" class=" h6">Changer de mot de passe </a>
+  </div>
+</div>
+</div>
+
+
+

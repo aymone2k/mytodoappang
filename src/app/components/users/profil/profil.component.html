@@ -1,0 +1,19 @@
+<app-header-page page="Mon compte"></app-header-page>
+<div class="container">
+  <div>
+    <div>
+      <h4> Avatar:</h4>
+
+       <img [src]="userImage" width="80" height="80">
+
+     </div>
+     <div>
+       <h4>Nom:</h4><p>{{userName}}</p>
+       <h4> Email:</h4><p>{{userEmail}}</p>
+     </div>
+   <button type="btn" (click)="OnModif()">Modifier mon profil:</button>
+  </div>
+ <div *ngIf="modifProfil">
+  <app-edit-profil></app-edit-profil>
+</div>
+</div>

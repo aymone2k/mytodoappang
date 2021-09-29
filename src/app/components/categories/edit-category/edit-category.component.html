@@ -1,0 +1,32 @@
+<app-header-page page="Modifier de la catégorie: {{category.categoryName|uppercase}} "></app-header-page>
+<div class="container mt-5">
+  <h4 class="title text-white text-capitalize text-info bg-info">Modification de la catégorie: {{category.categoryName|uppercase}}</h4>
+<div class="container mt-2">
+  <mat-spinner style="margin-bottom: 300px;" class="container text-center" *ngIf="isLoading"></mat-spinner>
+  <div class="container-sm col-6" *ngIf="!isLoading">
+
+    <form (ngSubmit)="onSubmit(editCatgForm)"  #editCatgForm= "ngForm">
+    <div class="col-md-4 mb-2" [ngStyle] = "{'background': category.categoryColor}"> Couleur Actuelle:</div>
+
+  <input  class="form-control" type="text" name="categoryName" [(ngModel)]= "category.categoryName"/>
+
+  <select class="form-select" id="status" name="categoryColor"  ngModel  required >
+    <option *ngFor="let color of colors, let i = index" [value]="color.color" [ngStyle] = "{'background': color.color}">
+
+     <div  class="col-sx-1"   >
+       {{color.name}}
+          </div>
+
+
+    </option>
+
+ </select>
+
+
+  <button type="submit" class="btn btn-primary" [disabled]="editCatgForm.invalid">Modifier</button>
+</form>
+</div>
+
+</div>
+</div>
+

@@ -1,0 +1,28 @@
+<mat-spinner style="margin-bottom: 300px;" class="container text-center" *ngIf="isLoading"></mat-spinner>
+<app-header-page page={{todo.todoName}} *ngIf="!isLoading"></app-header-page>
+
+ <div class="card"  *ngIf="!isLoading">
+
+<div class="card-header h5">Date de Création :  {{todo.createdAt| date:"dd/MM/yy"}}</div>
+<div class="card-body h6"  *ngIf="!isLoading">
+
+
+  <div class="alert alert-info" *ngIf = "todo.todoStatus=== true" >Terminé</div>
+  <div class="alert alert-warning" *ngIf = "todo.todoStatus=== false" >Encours</div>
+  <p>Catégorie : {{category.categoryName}}</p>
+ <div [ngStyle]="{'background':category.categoryColor}">
+  <p><em>Description :</em></p>
+  <p>{{todo.todoDescription}}</p>
+ </div>
+ <div>
+  <button type="button" class="btn btn-success"[routerLink]="['/edit-todo', todo._id]">Modifier</button>
+  <button class="btn btn-danger" (click)="onDeleteTodo()">Supprimer</button>
+</div>
+
+
+</div>
+
+  <div>
+    <a routerLink="/todolist" class="back">retour </a>
+</div>
+</div>

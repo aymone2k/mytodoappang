@@ -1,0 +1,47 @@
+
+<div class="container-fluide ">
+
+    <div class="container mt-3 ">
+    <div class="col-12 mb-3">
+      <div class="section-title text-center mb-15">
+          <h4 class="title text-white text-capitalize text-info bg-info">Ajouter une tâche</h4>
+      </div>
+  </div>
+  </div>
+
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmitForm()">
+    <div class="form-group">
+      <label for="exampleInputEmail1" class="form-label">Nom</label>
+      <input type="text" class="form-control"  formControlName="todoName">
+
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" placeholder="Leave a comment here" formControlName="todoDescription"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Catégories</label>
+
+    <select class="form-select"  formControlName="category" >
+
+      <option *ngFor="let catg of categories"[value]="catg._id" [ngStyle]="{'background':catg.categoryColor}" class="h6 text-center">
+     {{catg.categoryName}}
+      </option>
+
+    </select>
+    <button type="button" (click)="onCreateCategory()">ajouter une nouvelle catégorie</button>
+
+    </div>
+    <div class="form-group">
+      <label>Etat</label>
+      <select class="form-select" id="categories" formControlName="todoStatus">
+
+        <option value="false">En cours</option>
+        <option value="true">Terminé</option>
+
+      </select>
+      </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="todoForm.invalid">Enregistrer</button>
+  </form>
+  </div>

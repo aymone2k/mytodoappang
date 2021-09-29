@@ -1,0 +1,46 @@
+<app-header-page page="Connexion"></app-header-page>
+<div class="container-sm col-6">
+
+
+<mat-spinner style="margin-bottom: 300px;" class="container text-center" *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+  <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+  <div class="mb-3 mt-3" >
+    <label class="h6">Adresse Email: <span *ngIf="controlForm.email.errors">
+      *  </span></label>
+    <input type="email" class="form-control" formControlName="email" >
+    <div *ngIf="controlForm.email.touched && controlForm.email.errors" class="alert alert-danger">
+      <div *ngIf="controlForm.email.errors.required">Ce champ est requis</div>
+      <div *ngIf="controlForm.email.errors">cet email est invalide</div>
+    </div>
+
+    <div class="md-3 mt-3">
+      <label class="h6">Password : <span *ngIf="controlForm.password.errors">
+        *  </span></label>
+        <div class="input-group ">
+          <input [type]="fieldTextType1 ?'text':'password'" class="form-control" formControlName="password">
+          <div class="input-group-prepend">
+            <button type="button"    (click)="toogleFieldText1() " class="input-group-text theme-btn--dark1 btn--md show-password">show</button>
+             </div>
+          <div *ngIf="controlForm.password.touched && controlForm.password.errors" class="alert alert-danger">
+            <div *ngIf="controlForm.password.errors.required">Ce champ est requis</div>
+            <div *ngIf="controlForm.password.errors.pattern">6 lettres minimun</div>
+          </div>
+       </div>
+       </div>
+       <div class="col">
+        <div class="border-top">
+            <a  routerLink="/reset-password" class=" ">Mot de passe oublié </a>
+        </div>
+      </div>
+       </div>
+       <button type="submit" class="btn btn-primary" [disabled]="signInForm.invalid">Me connecter</button>
+</form>
+<div class="col-12">
+  <div class="border-top mt-4">
+      <a  routerLink="/signup" class="h6 no-account">Pas encore de compte? Cliquez pour créer un compte </a>
+  </div>
+</div>
+</div>
+</div>

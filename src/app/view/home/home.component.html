@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="section-title text-center mb-15">
+                <h2 class="title text-dark text-capitalize">Home</h2>
+            </div>
+        </div>
+
+</div>
+<div class="row mt-4" *ngIf ="!isAuth">
+<div class="row mb-4" >
+ <p class="text-center"> My Todo App est une application qui vous permettra de gérer votre liste de taches.<br/>
+  vous permettant de les ranger par catégorie.</p>
+</div>
+  <div class="card m-4" >
+    <h5 class="card-title text-center m-4"> Veuillez vous connecter pour accéder à l'application</h5>
+
+    <div class="card-body">
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary mb-2" type="button" routerLink="/signin">Je me connecte</button>
+        <button class="btn btn-primary mb-2" type="button" routerLink="/signup">Je créé un compte</button>
+      </div>
+
+    </div>
+
+
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf ="isAuth">
+
+      <app-todos></app-todos>
+
+    <app-list-category></app-list-category>
+
+</div>
+
+</div>

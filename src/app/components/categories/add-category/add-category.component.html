@@ -1,0 +1,38 @@
+<div class="container mt-3 mb-5">
+  <div class="container mt-3 ">
+  <div class="col-12 mb-3">
+    <div class="section-title text-center mb-15">
+        <h4 class="title text-white text-capitalize text-info bg-info">Ajouter une catégorie</h4>
+    </div>
+</div>
+</div>
+<mat-spinner style="margin-bottom: 300px;" class="container text-center" *ngIf="isLoading"></mat-spinner>
+<div class="container-sm col-6" *ngIf="!isLoading">
+
+  <form (ngSubmit)="onSubmit(addCatgForm)"  #addCatgForm= "ngForm">
+    <div class="form-group mb-3">
+      <label for="exampleInputEmail1" class="form-label h6">Nom de la catégorie: </label>
+      <input type="text" class="form-control" name="categoryName" ngModel required>
+
+    </div>
+
+    <div class="form-group mb-3">
+      <label class="h6"> Choisir un theme couleur : </label>
+
+    <select class="form-select" id="status" name="categoryColor"  ngModel  required >
+       <option *ngFor="let color of colors, let i = index" [value]="color.color" [ngStyle] = "{'background': color.color}">
+
+
+          {{color.name}}
+
+
+
+       </option>
+
+    </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="addCatgForm.invalid">Enregistrer</button>
+  </form>
+  </div>
+</div>

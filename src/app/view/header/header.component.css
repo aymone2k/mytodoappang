@@ -1,0 +1,14 @@
+.active{
+background-color:rgb(255, 72, 0);
+}
+.active a{
+  color:white;
+}
+
+.nav-item a{
+  color:black;
+}
+.nav-item :hover{
+background-color:rgb(7, 233, 241);
+}
+

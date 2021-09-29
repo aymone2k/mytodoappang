@@ -1,0 +1,28 @@
+<div class="container m-3">
+  <div class="col-12">
+    <div class="section-title text-center mb-15">
+        <h4 class="title text-white text-capitalize text-info bg-info">catégories créés</h4>
+    </div>
+</div>
+</div>
+
+<div class="container mt-5">
+
+  <mat-spinner style="margin-bottom: 300px;" class="container text-center" *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading" class="container mt-2 ">
+  <div class="d-grid gap-2 col-6 mx-auto">
+  <button class= "btn btn-outline-info mb-5 " (click)="onCreateTodo()">Ajouter une tache</button>
+  </div>
+  <div *ngIf="categories.length == 0">pas de catégories crées</div>
+
+
+  <div *ngIf="categories.length !== 0" class="list-group d-grid gap-1 col-6 mx-auto  ">
+  <a class="list-group-item list-group-item-action h6 " *ngFor="let catg of categories, let i = index"[ngStyle] = "{'background': catg.categoryColor}">
+
+Categorie N° {{i + 1}}  :  {{catg.categoryName|uppercase}}
+<div class="d-md-flex justify-content-md-end">
+    <button class="btn btn-dark" type="button"  (click)=" onUpdateCatg(catg._id)">modifier</button></div>
+  </a>
+</div>
+</div>
+</div>
