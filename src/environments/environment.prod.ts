@@ -2,6 +2,6 @@
 
 export const environment = {
   production: true,
-  api: 'http://localhost:3000/api',//adresse du back à modif
+  api: 'https://app-todo-fun.herokuapp.com/api'
 
 };
