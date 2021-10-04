@@ -25,7 +25,7 @@ import { WelcomeComponent } from './view/welcome/welcome.component';
 const routes: Routes = [
 
   {path:'home', component: HomeComponent},
-
+  {path:'', component: HomeComponent},
   {path:'welcome', component: WelcomeComponent},
   {path:'signin', component: SignInComponent},
   {path: 'signup', component: SignUpComponent},
@@ -42,6 +42,7 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard]},
   {path:'edit-category/:id', component: EditCategoryComponent, canActivate: [AuthGuard]},
   {path: 'not-found', component:NotFoundComponent },
+
   {path: '**', pathMatch:'full', redirectTo:'not-found'}
 ];
 
