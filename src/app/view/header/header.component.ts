@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
   user:string = "";
  isAuth:boolean = true;
  kocxyImage: any = "../assets/images/kocxy.png";
